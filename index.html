@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bread Cat — $BREADCAT</title>
+  <meta name="description" content="Bread Cat bakes pure meme magic, serving crispy laughs, fluffy vibes, and buttery gains across the internet." />
+  <link rel="icon" href="logo.png" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cat: {
+              yellow: '#5FD068',
+              gold: '#2F9E4A',
+              cream: '#EAF8EE',
+              crust: '#1F7A3A',
+              toast: '#B6EBC4',
+              dough: '#86EFAC',
+              ink: '#1B2E22',
+              soft: '#F4FBF6',
+            },
+          },
+          fontFamily: {
+            display: ['Sniglet', 'cursive'],
+            body: ['Fredoka', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            blob: '0 12px 0 #1B2E22',
+            'blob-sm': '0 6px 0 #1B2E22',
+            'blob-yellow': '0 10px 0 #1F7A3A',
+          },
+          animation: {
+            float: 'float 4s ease-in-out infinite',
+            'float-slow': 'float 6s ease-in-out infinite',
+            wiggle: 'wiggle 2.5s ease-in-out infinite',
+            pop: 'pop 0.35s ease-out',
+            'crumb-fall': 'crumbFall 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(2deg)' },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            },
+            pop: {
+              '0%': { transform: 'scale(0.9)' },
+              '70%': { transform: 'scale(1.05)' },
+              '100%': { transform: 'scale(1)' },
+            },
+            crumbFall: {
+              '0%': { transform: 'translateY(-10vh) rotate(0deg)', opacity: '0' },
+              '10%': { opacity: '0.7' },
+              '100%': { transform: 'translateY(110vh) rotate(360deg)', opacity: '0' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --cat-yellow: #5FD068;
+      --cat-cream: #EAF8EE;
+      --cat-crust: #1F7A3A;
+      --cat-ink: #1B2E22;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Fredoka', system-ui, sans-serif;
+      background: var(--cat-cream);
+      color: var(--cat-ink);
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='22' r='12' fill='%235FD068'/%3E%3Cellipse cx='11' cy='12' rx='5' ry='6' fill='%235FD068'/%3E%3Cellipse cx='29' cy='12' rx='5' ry='6' fill='%235FD068'/%3E%3Ccircle cx='20' cy='22' r='3.2' fill='%231B2E22'/%3E%3Cpath d='M14 28 Q20 32 26 28' stroke='%231B2E22' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M8 20 L2 18 M8 23 L1 23 M8 26 L2 28' stroke='%231B2E22' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M32 20 L38 18 M32 23 L39 23 M32 26 L38 28' stroke='%231B2E22' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") 12 12, auto;
+    }
+
+    a, button, input, .copy-btn, .nav-link {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='22' r='12' fill='%235FD068'/%3E%3Cellipse cx='11' cy='12' rx='5' ry='6' fill='%235FD068'/%3E%3Cellipse cx='29' cy='12' rx='5' ry='6' fill='%235FD068'/%3E%3Ccircle cx='20' cy='22' r='3.2' fill='%231B2E22'/%3E%3Cpath d='M14 28 Q20 32 26 28' stroke='%231B2E22' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M8 20 L2 18 M8 23 L1 23 M8 26 L2 28' stroke='%231B2E22' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M32 20 L38 18 M32 23 L39 23 M32 26 L38 28' stroke='%231B2E22' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='10' r='3' fill='%23FF6B6B'/%3E%3C/svg%3E") 12 12, pointer;
+    }
+
+    .bakery-bg {
+      background-color: #EAF8EE;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(95, 208, 104, 0.4) 0%, transparent 42%),
+        radial-gradient(circle at 88% 12%, rgba(47, 158, 74, 0.28) 0%, transparent 38%),
+        radial-gradient(circle at 70% 78%, rgba(134, 239, 172, 0.35) 0%, transparent 45%),
+        radial-gradient(circle at 20% 85%, rgba(182, 235, 196, 0.45) 0%, transparent 40%),
+        repeating-linear-gradient(
+          -12deg,
+          transparent,
+          transparent 28px,
+          rgba(31, 122, 58, 0.07) 28px,
+          rgba(31, 122, 58, 0.07) 29px
+        );
+    }
+
+    .cartoon-border {
+      border: 4px solid #1B2E22;
+    }
+
+    .section-title {
+      font-family: 'Sniglet', cursive;
+      letter-spacing: 0.02em;
+    }
+
+    .crumb {
+      position: fixed;
+      top: -40px;
+      width: 14px;
+      height: 10px;
+      background: #86EFAC;
+      border-radius: 40% 60% 50% 50%;
+      border: 2px solid #1B2E22;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.55;
+      animation: crumbFall linear infinite;
+    }
+
+    .bread-trail {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      pointer-events: none;
+      z-index: 9998;
+      will-change: transform;
+      transition: opacity 0.2s ease;
+    }
+
+    .bread-trail svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 2px 0 #1B2E22);
+    }
+
+    .ca-toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: #5FD068;
+      color: #1B2E22;
+      border: 3px solid #1B2E22;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      box-shadow: 0 6px 0 #1B2E22;
+      z-index: 10000;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+
+    .ca-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .chart-frame {
+      border: 4px solid #1B2E22;
+      border-radius: 1.75rem;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 12px 0 #1B2E22;
+      min-height: 420px;
+    }
+
+    .chart-frame iframe {
+      width: 100%;
+      height: 520px;
+      border: 0;
+      display: block;
+    }
+
+    .step-num {
+      font-family: 'Sniglet', cursive;
+    }
+
+    .hero-banner {
+      border: 4px solid #1B2E22;
+      border-radius: 1.75rem;
+      overflow: hidden;
+      box-shadow: 0 14px 0 #1B2E22;
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 320px;
+    }
+
+    .x-btn {
+      background: #111111;
+    }
+
+    .blob-btn {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .blob-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .blob-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #1B2E22;
+    }
+
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 4px solid #1B2E22;
+      border-bottom: 4px solid #1B2E22;
+      background: #5FD068;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 2.5rem;
+      animation: marquee 22s linear infinite;
+      padding: 0.65rem 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .logo-spin:hover {
+      animation: wiggle 0.5s ease-in-out;
+    }
+
+    @media (max-width: 640px) {
+      .chart-frame iframe {
+        height: 380px;
+      }
+    }
+  </style>
+</head>
+<body class="bakery-bg relative">
+  <!-- Floating crumbs -->
+  <div id="crumbs" aria-hidden="true"></div>
+
+  <!-- Bread trail followers -->
+  <div class="bread-trail" id="bread1" aria-hidden="true">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 24c0-10 10-16 20-16s20 6 20 16v18c0 6-6 10-20 10S12 48 12 42V24z" fill="#EAF8EE" stroke="#1B2E22" stroke-width="3"/>
+      <path d="M12 24c0-10 10-16 20-16s20 6 20 16" fill="none" stroke="#2F9E4A" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="24" cy="34" r="2" fill="#1F7A3A"/>
+      <circle cx="36" cy="30" r="1.5" fill="#1F7A3A"/>
+      <circle cx="30" cy="42" r="1.8" fill="#1F7A3A"/>
+    </svg>
+  </div>
+  <div class="bread-trail" id="bread2" aria-hidden="true">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 24c0-10 10-16 20-16s20 6 20 16v18c0 6-6 10-20 10S12 48 12 42V24z" fill="#B6EBC4" stroke="#1B2E22" stroke-width="3"/>
+      <path d="M12 24c0-10 10-16 20-16s20 6 20 16" fill="none" stroke="#2F9E4A" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="26" cy="36" r="2" fill="#1F7A3A"/>
+      <circle cx="38" cy="32" r="1.5" fill="#1F7A3A"/>
+    </svg>
+  </div>
+  <div class="bread-trail" id="bread3" aria-hidden="true">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 24c0-10 10-16 20-16s20 6 20 16v18c0 6-6 10-20 10S12 48 12 42V24z" fill="#86EFAC" stroke="#1B2E22" stroke-width="3"/>
+      <path d="M12 24c0-10 10-16 20-16s20 6 20 16" fill="none" stroke="#1F7A3A" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="28" cy="33" r="2" fill="#1F7A3A"/>
+      <circle cx="34" cy="40" r="1.6" fill="#1F7A3A"/>
+    </svg>
+  </div>
+
+  <div id="caToast" class="ca-toast section-title text-lg">CA copied! Fresh from the oven 🍞</div>
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-40 bg-cat-yellow/95 backdrop-blur-sm border-b-4 border-cat-ink">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2 group">
+        <img src="logo.png" alt="Bread Cat logo" class="w-12 h-12 sm:w-14 sm:h-14 object-contain logo-spin drop-shadow-md" />
+        <div class="leading-none">
+          <p class="section-title text-xl sm:text-2xl text-cat-ink">Bread Cat</p>
+          <p class="text-xs sm:text-sm font-semibold text-cat-ink/70 tracking-wide">$BREADCAT</p>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-5 text-sm font-semibold">
+        <a href="#about" class="nav-link hover:text-cat-gold transition">About</a>
+        <a href="#howtobuy" class="nav-link hover:text-cat-gold transition">How to Buy</a>
+        <a href="#chart" class="nav-link hover:text-cat-gold transition">Chart</a>
+      </nav>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="https://t.me/BreadCatHood" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full cartoon-border overflow-hidden bg-black hover:scale-110 transition shadow-blob-sm" aria-label="Telegram">
+          <img src="tg.png" alt="Telegram" class="w-full h-full object-cover" />
+        </a>
+        <a href="https://x.com/BreadCatHood" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full cartoon-border overflow-hidden x-btn hover:scale-110 transition shadow-blob-sm" aria-label="X / Twitter">
+          <img src="x.png" alt="X" class="w-full h-full object-cover" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="relative pt-8 sm:pt-12 pb-6 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10 items-center">
+          <div class="text-center lg:text-left order-2 lg:order-1">
+            <p class="inline-block mb-4 px-4 py-1.5 rounded-full bg-cat-ink text-cat-yellow text-sm font-bold tracking-wide shadow-blob-sm">
+              Fresh meme loaf · Robinhood ETH
+            </p>
+            <h1 class="section-title text-5xl sm:text-6xl md:text-7xl text-cat-ink leading-[0.95] mb-4">
+              Bread<br class="hidden sm:block" />
+              <span class="text-cat-gold relative inline-block">
+                Cat
+                <span class="absolute -top-2 -right-8 text-3xl animate-wiggle hidden sm:inline" aria-hidden="true">🐱</span>
+              </span>
+            </h1>
+            <p class="text-lg sm:text-xl text-cat-ink/80 max-w-xl mx-auto lg:mx-0 mb-2 font-medium leading-relaxed">
+              Bread Cat bakes pure meme magic, serving crispy laughs, fluffy vibes, and buttery gains across the internet.
+            </p>
+            <p class="section-title text-2xl text-cat-crust mb-7">$BREADCAT</p>
+
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
+              <a
+                href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=TBA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="blob-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-cat-yellow cartoon-border shadow-blob section-title text-lg text-cat-ink"
+              >
+                Buy Now
+              </a>
+              <a
+                href="https://dexscreener.com/robinhood/TBA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="blob-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-cat-soft cartoon-border shadow-blob section-title text-lg text-cat-ink"
+              >
+                Chart
+              </a>
+            </div>
+
+            <!-- CA copy -->
+            <div class="max-w-md mx-auto lg:mx-0">
+              <label class="block text-sm font-bold mb-2 text-cat-ink/70 uppercase tracking-wider">Contract Address</label>
+              <div class="flex items-stretch gap-2">
+                <div class="flex-1 flex items-center px-4 py-3 rounded-2xl bg-white cartoon-border shadow-blob-sm overflow-hidden">
+                  <code id="caAddress" class="text-sm sm:text-base font-semibold truncate text-cat-ink">TBA</code>
+                </div>
+                <button
+                  type="button"
+                  id="copyCa"
+                  class="copy-btn blob-btn shrink-0 px-5 rounded-2xl bg-cat-crust cartoon-border shadow-blob-sm section-title text-cat-soft"
+                  aria-label="Copy contract address"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 flex flex-col items-center gap-5">
+            <div class="relative">
+              <div class="absolute -inset-4 rounded-full bg-cat-yellow/50 blur-2xl animate-float-slow" aria-hidden="true"></div>
+              <img
+                src="logo.png"
+                alt="Bread Cat — cat peeking from bread"
+                class="relative w-56 sm:w-72 md:w-80 drop-shadow-2xl animate-float select-none"
+                draggable="false"
+              />
+            </div>
+            <div class="hero-banner w-full max-w-lg">
+              <img src="banner.png" alt="Bread Cat banner" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee my-8" aria-hidden="true">
+      <div class="marquee-track section-title text-xl text-cat-ink">
+        <span>$BREADCAT</span><span>🍞</span>
+        <span>Crispy Laughs</span><span>🐱</span>
+        <span>Fluffy Vibes</span><span>🍞</span>
+        <span>Buttery Gains</span><span>🐱</span>
+        <span>Robinhood ETH</span><span>🍞</span>
+        <span>Meme Magic</span><span>🐱</span>
+        <span>$BREADCAT</span><span>🍞</span>
+        <span>Crispy Laughs</span><span>🐱</span>
+        <span>Fluffy Vibes</span><span>🍞</span>
+        <span>Buttery Gains</span><span>🐱</span>
+        <span>Robinhood ETH</span><span>🍞</span>
+        <span>Meme Magic</span><span>🐱</span>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section id="about" class="px-4 py-14 sm:py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="section-title text-4xl sm:text-5xl text-cat-ink mb-3">Meet Bread Cat</h2>
+          <p class="text-lg text-cat-ink/75 max-w-2xl mx-auto font-medium">
+            One loaf. One legend. Straight from the oven to Robinhood ETH.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-5">
+          <article class="bg-white cartoon-border rounded-3xl p-6 shadow-blob text-center hover:-translate-y-1 transition">
+            <div class="text-4xl mb-3 animate-wiggle inline-block">🍞</div>
+            <h3 class="section-title text-2xl mb-2">Crispy Laughs</h3>
+            <p class="text-cat-ink/70 font-medium">Oven-fresh memes toasted daily for maximum crunch.</p>
+          </article>
+          <article class="bg-cat-yellow cartoon-border rounded-3xl p-6 shadow-blob text-center hover:-translate-y-1 transition">
+            <div class="text-4xl mb-3 animate-float inline-block">🐱</div>
+            <h3 class="section-title text-2xl mb-2">Fluffy Vibes</h3>
+            <p class="text-cat-ink/80 font-medium">Soft paws, warm dough, and community that never burns.</p>
+          </article>
+          <article class="bg-cat-toast cartoon-border rounded-3xl p-6 shadow-blob text-center hover:-translate-y-1 transition">
+            <div class="text-4xl mb-3 animate-wiggle inline-block" style="animation-delay: 0.4s">🧈</div>
+            <h3 class="section-title text-2xl mb-2">Buttery Gains</h3>
+            <p class="text-cat-ink/70 font-medium">Spread thick. Stack loaves. Let $BREADCAT rise.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Buy -->
+    <section id="howtobuy" class="px-4 py-14 sm:py-20 bg-cat-yellow/40 border-y-4 border-cat-ink relative overflow-hidden">
+      <div class="absolute top-6 left-6 w-16 h-16 opacity-30 animate-float pointer-events-none" aria-hidden="true">
+        <img src="logo.png" alt="" class="w-full h-full object-contain" />
+      </div>
+      <div class="absolute bottom-8 right-8 w-20 h-20 opacity-25 animate-float-slow pointer-events-none" aria-hidden="true">
+        <img src="logo.png" alt="" class="w-full h-full object-contain" />
+      </div>
+
+      <div class="max-w-5xl mx-auto relative">
+        <div class="text-center mb-12">
+          <h2 class="section-title text-4xl sm:text-5xl text-cat-ink mb-3">How to Buy</h2>
+          <p class="text-lg text-cat-ink/75 max-w-2xl mx-auto font-medium">
+            Grab $BREADCAT on Robinhood ETH in four simple slices.
+          </p>
+        </div>
+
+        <ol class="grid sm:grid-cols-2 gap-5 lg:gap-6">
+          <li class="bg-white cartoon-border rounded-3xl p-6 sm:p-7 shadow-blob flex gap-4 items-start">
+            <span class="step-num shrink-0 w-14 h-14 rounded-2xl bg-cat-yellow cartoon-border flex items-center justify-center text-2xl shadow-blob-sm">1</span>
+            <div>
+              <h3 class="section-title text-xl sm:text-2xl mb-2">Get a Wallet</h3>
+              <p class="text-cat-ink/75 font-medium leading-relaxed">
+                Install a Web3 wallet (like MetaMask or Rabby) and create or import your account. Keep your seed phrase secret — Bread Cat never asks for it.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white cartoon-border rounded-3xl p-6 sm:p-7 shadow-blob flex gap-4 items-start">
+            <span class="step-num shrink-0 w-14 h-14 rounded-2xl bg-cat-dough cartoon-border flex items-center justify-center text-2xl shadow-blob-sm">2</span>
+            <div>
+              <h3 class="section-title text-xl sm:text-2xl mb-2">Add Robinhood ETH</h3>
+              <p class="text-cat-ink/75 font-medium leading-relaxed">
+                Switch your wallet network to <strong>Robinhood ETH</strong>. Add the chain if needed so you’re baking on the right oven.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white cartoon-border rounded-3xl p-6 sm:p-7 shadow-blob flex gap-4 items-start">
+            <span class="step-num shrink-0 w-14 h-14 rounded-2xl bg-cat-toast cartoon-border flex items-center justify-center text-2xl shadow-blob-sm">3</span>
+            <div>
+              <h3 class="section-title text-xl sm:text-2xl mb-2">Fund with ETH</h3>
+              <p class="text-cat-ink/75 font-medium leading-relaxed">
+                Bridge or transfer ETH onto Robinhood ETH for gas and your swap. A little dough goes a long way.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white cartoon-border rounded-3xl p-6 sm:p-7 shadow-blob flex gap-4 items-start">
+            <span class="step-num shrink-0 w-14 h-14 rounded-2xl bg-cat-crust cartoon-border flex items-center justify-center text-2xl shadow-blob-sm text-cat-soft">4</span>
+            <div>
+              <h3 class="section-title text-xl sm:text-2xl mb-2">Swap for $BREADCAT</h3>
+              <p class="text-cat-ink/75 font-medium leading-relaxed mb-3">
+                Open Uniswap on Robinhood, paste the CA, and swap ETH for <strong>$BREADCAT</strong>. Toast ready — enjoy the loaf.
+              </p>
+              <a
+                href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=TBA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="blob-btn inline-flex px-5 py-2.5 rounded-xl bg-cat-yellow cartoon-border shadow-blob-sm section-title text-cat-ink"
+              >
+                Buy on Uniswap →
+              </a>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Chart / DexScreener embed -->
+    <section id="chart" class="px-4 py-14 sm:py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="section-title text-4xl sm:text-5xl text-cat-ink mb-3">Live Chart</h2>
+          <p class="text-lg text-cat-ink/75 max-w-2xl mx-auto font-medium mb-6">
+            Watch $BREADCAT rise in real time on DexScreener.
+          </p>
+          <a
+            href="https://dexscreener.com/robinhood/TBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-cat-ink text-cat-yellow cartoon-border shadow-blob section-title"
+          >
+            Open Full Chart
+          </a>
+        </div>
+        <div class="chart-frame">
+          <iframe
+            title="Bread Cat DexScreener chart"
+            src="https://dexscreener.com/robinhood/TBA?embed=1&theme=light&trades=0&info=0"
+            loading="lazy"
+            allow="clipboard-write"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA band -->
+    <section class="px-4 pb-16">
+      <div class="max-w-5xl mx-auto bg-cat-ink cartoon-border rounded-[2rem] shadow-blob px-6 py-10 sm:py-12 text-center relative overflow-hidden">
+        <div class="absolute -right-6 -top-6 w-32 h-32 opacity-20 pointer-events-none" aria-hidden="true">
+          <img src="logo.png" alt="" class="w-full h-full object-contain animate-wiggle" />
+        </div>
+        <h2 class="section-title text-3xl sm:text-4xl text-cat-yellow mb-3">Ready to loaf around?</h2>
+        <p class="text-cat-cream/80 text-lg max-w-xl mx-auto mb-7 font-medium">
+          Join the hood, follow the crumbs, and stack $BREADCAT before the oven timer dings.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <a
+            href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=TBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn inline-flex px-7 py-3.5 rounded-2xl bg-cat-yellow cartoon-border shadow-blob-yellow section-title text-lg text-cat-ink"
+          >
+            Buy Now
+          </a>
+          <a
+            href="https://dexscreener.com/robinhood/TBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn inline-flex px-7 py-3.5 rounded-2xl bg-cat-cream cartoon-border shadow-blob-sm section-title text-lg text-cat-ink"
+          >
+            Chart
+          </a>
+        </div>
+        <div class="flex justify-center gap-4">
+          <a href="https://t.me/BreadCatHood" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full cartoon-border overflow-hidden bg-black hover:scale-110 transition shadow-blob-sm" aria-label="Telegram">
+            <img src="tg.png" alt="Telegram" class="w-full h-full object-cover" />
+          </a>
+          <a href="https://x.com/BreadCatHood" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full cartoon-border overflow-hidden x-btn hover:scale-110 transition shadow-blob-sm" aria-label="X / Twitter">
+            <img src="x.png" alt="X" class="w-full h-full object-cover" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t-4 border-cat-ink bg-cat-yellow px-4 py-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="" class="w-10 h-10 object-contain" />
+        <div>
+          <p class="section-title text-lg text-cat-ink">Bread Cat · $BREADCAT</p>
+          <p class="text-xs font-semibold text-cat-ink/60">Baked with meme magic on Robinhood ETH</p>
+        </div>
+      </div>
+      <p class="text-xs sm:text-sm font-medium text-cat-ink/60 text-center sm:text-right max-w-sm">
+        $BREADCAT is a meme token. Not financial advice. DYOR. Only risk dough you can afford to toast.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const CA = 'TBA';
+
+      // Copy CA
+      const copyBtn = document.getElementById('copyCa');
+      const toast = document.getElementById('caToast');
+      const caEl = document.getElementById('caAddress');
+
+      async function copyCA() {
+        const text = caEl ? caEl.textContent.trim() : CA;
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        toast.classList.add('show');
+        clearTimeout(copyCA._t);
+        copyCA._t = setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      if (copyBtn) copyBtn.addEventListener('click', copyCA);
+
+      // Falling crumbs
+      const crumbs = document.getElementById('crumbs');
+      if (crumbs) {
+        for (let i = 0; i < 12; i++) {
+          const c = document.createElement('div');
+          c.className = 'crumb';
+          c.style.left = Math.random() * 100 + 'vw';
+          c.style.animationDuration = 6 + Math.random() * 8 + 's';
+          c.style.animationDelay = Math.random() * 8 + 's';
+          c.style.width = 10 + Math.random() * 10 + 'px';
+          c.style.height = 8 + Math.random() * 6 + 'px';
+          crumbs.appendChild(c);
+        }
+      }
+
+      // 3 breads follow cursor
+      const breads = [
+        document.getElementById('bread1'),
+        document.getElementById('bread2'),
+        document.getElementById('bread3'),
+      ].filter(Boolean);
+
+      const positions = breads.map(() => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+      let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const lags = [0.18, 0.11, 0.07];
+      const offsets = [
+        { x: 28, y: 28 },
+        { x: 48, y: 42 },
+        { x: 68, y: 56 },
+      ];
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      }, { passive: true });
+
+      function animateBreads() {
+        let tx = mouse.x;
+        let ty = mouse.y;
+        breads.forEach((el, i) => {
+          const lag = lags[i];
+          positions[i].x += (tx - positions[i].x) * lag;
+          positions[i].y += (ty - positions[i].y) * lag;
+          const ox = offsets[i].x;
+          const oy = offsets[i].y;
+          const rot = Math.sin(Date.now() / 400 + i) * 8;
+          el.style.transform =
+            'translate(' + (positions[i].x + ox - 18) + 'px,' + (positions[i].y + oy - 18) + 'px) rotate(' + rot + 'deg)';
+          tx = positions[i].x;
+          ty = positions[i].y;
+        });
+        requestAnimationFrame(animateBreads);
+      }
+      animateBreads();
+    })();
+  </script>
+</body>
+</html>
